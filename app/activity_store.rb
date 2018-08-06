@@ -10,4 +10,15 @@ class ActivityStore
       f.write(activity_data.to_json)
     end
   end
+
+  def get(id)
+    file = File.read("#{@directory}/#{id}.json")
+    data = JSON.parse(file)
+    Activity.new(
+      data['id'].to_i,
+      data['name'],
+      data['started_at'],
+      Course.new(data['course'])
+    )
+  end
 end

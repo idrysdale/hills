@@ -56,4 +56,25 @@ RSpec.describe ActivityStore do
       FileUtils.rm_rf("#{storage_directory}")
     end
   end
+
+  describe '#get' do
+    let(:storage_directory) {
+      'spec/support/activities'
+    }
+    subject(:activity_store) {
+      ActivityStore.new(
+        storage_directory
+      )
+    }
+
+    context 'with an activity data' do
+      before do
+        @activity = activity_store.get(1)
+      end
+
+      it 'retrieves a single activity' do
+        expect(@activity).to be_an(Activity)
+      end
+    end
+  end
 end
