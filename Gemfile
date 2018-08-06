@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'dotenv'
 gem 'pry'
-gem 'rb-readline'
+gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'rspec'
 gem 'strava-api-v3'
