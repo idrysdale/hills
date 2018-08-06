@@ -1,4 +1,5 @@
 require 'dotenv/load'
+require_relative 'activity'
 require_relative 'activity_data'
 require_relative 'activity_store'
 require_relative 'hill'
