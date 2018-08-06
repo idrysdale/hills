@@ -46,17 +46,21 @@ class StravaActivityDownloader
       }
       .map { |strava_activity|
         # sleep(2)
-        course_data = download_course_data_for(strava_activity['id'])
-        ActivityData.new(
-          strava_activity['id'],
-          strava_activity['name'].tr("'", ""),
-          strava_activity['start_date'],
-          course_data
-        )
+        create_activity_data_for(strava_activity)
       }
     rescue SocketError
       puts "We got a Net::HTTP SocketError!"
       return []
+  end
+
+  def create_activity_data_for(strava_activity)
+    course_data = download_course_data_for(strava_activity['id'])
+    ActivityData.new(
+      strava_activity['id'],
+      strava_activity['name'].tr("'", ""),
+      strava_activity['start_date'],
+      course_data
+    )
   end
 
   def download_course_data_for(activity_id)
