@@ -10,6 +10,11 @@ class StravaActivityDownloader
     data_of_new_activities(started_since)
   end
 
+  def download_activity(strava_activity_id:)
+    strava_activity = @client.retrieve_an_activity(strava_activity_id)
+    create_activity_data_for(strava_activity)
+  end
+
   private
 
   def unix_epoch_time(iso8601_time)

@@ -21,4 +21,11 @@ class StravaApiV3ClientDouble
     data = JSON.parse(file)
   end
 
+  def retrieve_an_activity(activity_id)
+    file = File.read(
+      "spec/support/strava_activity_streams/activities/strava_id_#{activity_id}.json"
+    )
+    data = JSON.parse(file)
+  end
+
 end

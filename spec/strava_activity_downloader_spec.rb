@@ -34,4 +34,22 @@ RSpec.describe StravaActivityDownloader do
       end
     end
   end
+
+  describe '#download_activity(strava_activity_id:)' do
+    context 'with a valid strava_id' do
+      before do
+        @activity_data = strava_activity_downloader
+          .download_activity(strava_activity_id: '1')
+      end
+
+      it 'gets the activity and course data' do
+        expect(@activity_data.id).to eq 1
+      end
+
+      it 'gets the associated course' do
+        expect(@activity_data.course_data).to be_an(Array)
+        expect(@activity_data.course_data.first).to eq([53.364948, -1.502514])
+      end
+    end
+  end
 end
